@@ -1,12 +1,15 @@
 <script>
 	import '$lib/main.css';
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
+	import { serialMessage } from './stores.js';
 
 	import { browser } from '$app/environment';
 
 	let boardConnected = false;
+	let serialLine = 0;
 
-	if (browser) {
+	onMount(()=> {
 		const socket = new WebSocket('ws://localhost:8080');
 		// Connection opened
 		socket.addEventListener('open', (event) => {
@@ -16,15 +19,15 @@
 		// Listen for messages
 		socket.addEventListener('message', (event) => {
 			let data = JSON.parse(event.data);
+			serialMessage.set(data);
 			console.log('Message from server :', data);
-			console.log(data);
 			if (typeof data === 'object' && data.connected === true) {
 				boardConnected = true;
 			} else {
 				boardConnected = false;
 			}
 		});
-	}
+	});
 
 	const pages = ['/', '/poti', '/photoresistor', '/led', '/servo'];
 
@@ -38,7 +41,6 @@
 
 	const navigation = pages.map((page) => {
 		const name = capitalize(page.replace(/\//gm, ''));
-
 		return { name: name, link: page };
 	});
 

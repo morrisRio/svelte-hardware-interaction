@@ -29,7 +29,7 @@ const createWebSocket = () => {
   return wss;
 };
 
-const devicePort = "/dev/tty.usbmodem143201"; //await searchPorts();
+const devicePort = "/dev/tty.usbmodem143401"; //await searchPorts();
 console.log(devicePort);
 
 let port = new SerialPort({ path: devicePort, baudRate: 9600 });
@@ -53,7 +53,7 @@ port.on("close", function (err) {
 });
 
 parser.on("data", (data) => {
-  // console.log(data)
+  //console.log(data)
   //websocketClient.send(JSON.stringify({ connected: true }));
 
   if (websocketClient !== undefined) {
@@ -83,7 +83,7 @@ wss.on("connection", function connection(ws) {
   ws.send(JSON.stringify("something"));
 });
 
-// Automatic search for Ports
+// Automatic search for ports:
 /*
 const searchPorts = async () => {
   console.log("searching");

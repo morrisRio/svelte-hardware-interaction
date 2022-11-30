@@ -1,10 +1,5 @@
 <script>
 	import { serialMessage } from '../stores.js';
-
-	console.log('seriaMessage from store: ', $serialMessage);
-
-
-
 </script>
 
 <h1>Potentiometer Values</h1>

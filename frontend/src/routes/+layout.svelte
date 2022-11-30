@@ -2,32 +2,11 @@
 	import '$lib/main.css';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { serialMessage } from './stores.js';
+	import { connectWebSocket, boardConnected } from './stores.js';
+	import {browser} from '$app/environment';
 
-	import { browser } from '$app/environment';
-
-	let boardConnected = false;
-	let serialLine = 0;
-
-	onMount(()=> {
-		const socket = new WebSocket('ws://localhost:8080');
-		// Connection opened
-		socket.addEventListener('open', (event) => {
-			socket.send('Hello Server!');
-		});
-
-		// Listen for messages
-		socket.addEventListener('message', (event) => {
-			let data = JSON.parse(event.data);
-			serialMessage.set(data);
-			console.log('Message from server :', data);
-			if (typeof data === 'object' && data.connected === true) {
-				boardConnected = true;
-			} else {
-				boardConnected = false;
-			}
-		});
-	});
+	//when the layout and therefore the app is in the browser connect the websocket
+	if (browser) connectWebSocket();
 
 	const pages = ['/', '/poti', '/photoresistor', '/led', '/servo'];
 
@@ -60,6 +39,7 @@
 				{/if}
 			</li>
 		{/each}
+		<li class="connection-monitor" class:connected={$boardConnected}>Board connectet: {$boardConnected}</li>
 	</ul>
 </nav>
 
@@ -76,6 +56,15 @@
 		padding: 0;
 		flex-wrap: wrap;
 		align-items: center;
+	}
+
+	.connection-monitor {
+		margin-left:auto;
+		font-weight: 700;
+		color: rgb(167, 3, 3);
+	}
+	.connected {
+		color: rgb(101, 167, 3);
 	}
 
 	a {

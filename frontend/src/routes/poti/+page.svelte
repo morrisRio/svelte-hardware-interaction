@@ -1,5 +1,9 @@
 <script>
-	import { serialMessage } from '../stores.js';
+	import {serialMessage, connectWebSocket} from '../stores.js';
+	import {browser} from '$app/environment';
+
+	if (browser) connectWebSocket();
+    
 </script>
 
 <h1>Potentiometer Values</h1>

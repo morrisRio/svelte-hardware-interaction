@@ -1,14 +1,13 @@
 <script>
 	import '$lib/main.css';
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 	import { connectWebSocket, boardConnected } from './stores.js';
 	import {browser} from '$app/environment';
 
 	//when the layout and therefore the app is in the browser connect the websocket
-	if (browser) connectWebSocket();
+	//if (browser) connectWebSocket();
 
-	const pages = ['/', '/poti', '/photoresistor', '/led', '/servo'];
+	const pages = ['/', '/poti', '/led', '/write multiple values'];
 
 	const capitalize = (word) => {
 		if (word.length === 0) {

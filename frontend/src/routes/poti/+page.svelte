@@ -1,12 +1,38 @@
 <script>
-	import {serialMessage, connectWebSocket} from '../stores.js';
 	import {browser} from '$app/environment';
 
-	if (browser) connectWebSocket();
+	let socket;
+	let potiValue;
+
+	if (browser) {
+        socket = new WebSocket('ws://localhost:8080');
+
+        socket.addEventListener('open', (event) => {
+            socket.send('Hello Server!');
+        });
+
+        socket.addEventListener('message', (event) => {
+            const data = JSON.parse(event.data);
+            potiValue = data.message;
+	    });
+    }
+    
     
 </script>
+<div class="container">
+	
+	<h1>Potentiometer - receiving data</h1>
+	<p>For wiring you can check the plan at the <a href="https://docs.arduino.cc/built-in-examples/basics/AnalogReadSerial">Ardunio Documentation</a></p>
+	<p class="sidenote">Make sure to upload the correct Code to the Arduino (/hardware/poti_photoresistor-example)</p>
 
-<h1>Potentiometer Values</h1>
+	<div class="controls">
+		<p>potiValue:</p>
+		<p class="data-value center">{potiValue}</p>
+	</div>
+</div>
 
-<p>This is a prime example for using analouge values from sensors.</p>
-<p>Message: {$serialMessage}</p>
+<style>
+	.center {
+		align-self: center;
+	}
+</style>

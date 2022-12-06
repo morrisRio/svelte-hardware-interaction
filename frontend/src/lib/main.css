@@ -13,11 +13,41 @@ button {
 	border-style: none;
 	border-radius: 4px;
 }
+h1 {
+	margin: 8px 0;
+}
+
+.sidenote {
+	color: grey;
+}
 
 button:hover {
 	background-color: #38cfc7;
 }
 
-.code {
+.data-value {
 	font-family: 'Source Code Pro', monospace;
+	font-size: 24pt;
+}
+
+.controls {
+	margin: 16px 0px;
+	display: flex;
+	width: 300px;
+	background-color: #efefef;
+	border: 3px solid #e3e3e3;
+	border-radius: 8px;
+	flex-direction: column;
+	gap: 16px;
+	padding: 16px;
+}
+
+.container {
+	margin: 16px auto;
+	width: 80%;
+}
+
+a {
+	text-decoration: none;
+	color: #20b2aa;
 }

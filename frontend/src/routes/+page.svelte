@@ -1,2 +1,10 @@
-<h1>Hardware Connection with the Serialport-library</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+
+</script>
+
+<div class="container">
+
+    <h1>Hardware Connection with the Serialport-library</h1>
+    <p>Check the readme for instructions.</p>
+    
+</div>

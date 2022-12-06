@@ -1,5 +1,8 @@
 ### Setup
 
+In den entsprechenden Ordner wechseln (frontend/backend)
+
+    cd <foldername>
     npm install
 
 ### Develop
@@ -38,7 +41,9 @@ Da der serielle Port nur auf Clientseite existiert, führen wir den Prozess auf 
 
 ### Hardware
 
-Auf Seite des Arduinos lesen und schreiben wir über die serielle Schnittstelle
+Auf Seite des Arduinos lesen und schreiben wir über die serielle Schnittstelle#
+
+**⚠️ Achtung:** während der Port belegt ist, bspw. durch das serialport-script, kann nichts auf das board geladen werden
 
     String inputString;
 

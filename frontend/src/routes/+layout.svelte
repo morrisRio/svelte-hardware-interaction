@@ -7,7 +7,7 @@
 	//when the layout and therefore the app is in the browser connect the websocket
 	if (browser) connectWebSocket();
 
-	const pages = ['/', '/poti', '/photoresistor','/led', '/write multiple values'];
+	const pages = ['/', '/poti', '/photoresistor','/led', '/MultipleValues'];
 
 	const capitalize = (word) => {
 		if (word.length === 0) {
@@ -47,7 +47,12 @@
 </main>
 
 <style>
+	nav {
+		border-bottom: 3px solid #e3e3e3;
+	}
 	nav ul {
+		width:80%;
+		margin: 0 auto;
 		margin-top: 2rem;
 		display: flex;
 		gap: 16px;
@@ -74,19 +79,6 @@
 		color: lightseagreen;
 	}
 	.active {
-		border-bottom: 1px solid black;
-	}
-	:global(body) {
-		max-width: 80%;
-		margin-left: auto;
-		margin-right: auto;
-		font-family: sans-serif;
-	}
-
-	@media (max-width: 560px) {
-		:global(body) {
-			max-width: 100%;
-			padding: 0 20px;
-		}
+		border-bottom: 3px solid black;
 	}
 </style>

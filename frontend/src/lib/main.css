@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+button {
+	color: white;
+	background-color: #20b2aa;
+	font-weight: 700;
+	padding: 8px 16px;
+	border-style: none;
+	border-radius: 4px;
+}
+
+button:hover {
+	background-color: #38cfc7;
+}
+
+.code {
+	font-family: 'Source Code Pro', monospace;
+}

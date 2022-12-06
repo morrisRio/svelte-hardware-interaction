@@ -5,9 +5,9 @@
 	import {browser} from '$app/environment';
 
 	//when the layout and therefore the app is in the browser connect the websocket
-	//if (browser) connectWebSocket();
+	if (browser) connectWebSocket();
 
-	const pages = ['/', '/poti', '/led', '/write multiple values'];
+	const pages = ['/', '/poti', '/photoresistor','/led', '/write multiple values'];
 
 	const capitalize = (word) => {
 		if (word.length === 0) {

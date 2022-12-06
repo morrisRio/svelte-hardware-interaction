@@ -1,35 +1,40 @@
 // https://serialport.io/docs/guide-usage
 import { SerialPort, ReadlineParser } from "serialport";
-import WebSocket, { WebSocketServer } from "ws";
+import { WebSocketServer } from "ws";
 
 //WEBSOCKET ________________________________________________________________________________________________
-//Websocket to exchange data with frontend
+//WebSocket to exchange data with frontend
 const wss = new WebSocketServer({
   port: 8080,
 });
 
+//the client will be stored here when a connection is established
 let websocketClient = undefined;
 
+//on connection the new client is passed to the connection() function an stored in our variable
 wss.on("connection", function connection(ws) {
   websocketClient = ws;
 
+  //when receiving a message from the client write it to the device
   ws.on("message", function message(data) {
     console.log("received: %s", data);
-    // message =
     if (port) port.write(data + "\n");
   });
 });
 
 //SERIALPORT ________________________________________________________________________________________________
 
+//creating the Serialport with the correct path to the port on the devive.
+//a simple way to look up the device port is by looking for it in the Arduino IDE
 const devicePort = "/dev/tty.usbmodem143301";
 const port = new SerialPort({ path: devicePort, baudRate: 9600 });
+//for a more sophisticated way take a look at the 'serialprt-auto.js' script
 
 // Readline Parser: https://serialport.io/docs/api-serialport#parsers
-// Creating the parser and piping can be shortened to
+// creating the parser and piping can be shortened to
 let parser = port.pipe(new ReadlineParser());
 
-//send data from the serialport to frontend
+//when receiving data from the devie send it to the client
 parser.on("data", (data) => {
   if (websocketClient !== undefined) {
     websocketClient.send(JSON.stringify({ connected: true, message: data }));
